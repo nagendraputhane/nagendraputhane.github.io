@@ -1,0 +1,68 @@
+# =============================================================================
+# GitHub Actions Workflow: Deploy Sphinx Site to GitHub Pages
+# =============================================================================
+# 1. Triggered on push to main branch (or manual trigger via Actions tab)
+# 2. Checks out your repository code
+# 3. Sets up Python and installs Sphinx + theme from requirements.txt
+# 4. Builds HTML from your .rst files using Sphinx
+# 5. Uploads the built HTML as an artifact
+# 6. Deploys the artifact to GitHub Pages
+# =============================================================================
+
+name: Deploy Sphinx to GitHub Pages
+
+on:
+  # Run when code is pushed to the main branch
+  push:
+    branches: ["main"]
+  
+  # Allow manual trigger from the Actions tab on GitHub
+  workflow_dispatch:
+
+permissions:
+  contents: read        # Can read repository contents
+  pages: write          # Can write to GitHub Pages
+  id-token: write       # Required for GitHub Pages deployment
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false  # Don't cancel in-progress deployments
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # -b html = build HTML format
+      # source = input directory (where your .rst files are)
+      # build = output directory (where HTML goes)
+      - name: Build Sphinx documentation
+        run: sphinx-build -b html source build
+
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build  # Upload the build directory
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

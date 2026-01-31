@@ -1,0 +1,60 @@
+# =============================================================================
+# Git Ignore File
+# =============================================================================
+# Files and directories listed here will NOT be pushed to GitHub.
+# They stay local on your machine only.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Sphinx Build Output
+# -----------------------------------------------------------------------------
+# The generated HTML files. GitHub Actions builds these fresh each time,
+# so we don't need to commit them.
+build/
+
+# -----------------------------------------------------------------------------
+# Local Documentation
+# -----------------------------------------------------------------------------
+# Your personal guide for editing the website - stays on your machine.
+HOW_TO_EDIT.md
+
+# Cursor AI coding guidelines - personal development file
+CURSOR.md
+
+# -----------------------------------------------------------------------------
+# Python Virtual Environment
+# -----------------------------------------------------------------------------
+# If you set up a local Python environment to preview your site
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# -----------------------------------------------------------------------------
+# Operating System Files
+# -----------------------------------------------------------------------------
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# -----------------------------------------------------------------------------
+# Editor/IDE Files
+# -----------------------------------------------------------------------------
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project

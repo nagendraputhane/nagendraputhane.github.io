@@ -1,0 +1,22 @@
+# =============================================================================
+# Python Dependencies for Sphinx Website
+# =============================================================================
+# These packages are installed by GitHub Actions to build your site.
+# You can also install them locally to preview your site before pushing.
+#
+# To install locally:
+#   python -m venv .venv
+#   source .venv/bin/activate  (on Mac/Linux)
+#   pip install -r requirements.txt
+#
+# To build locally:
+#   sphinx-build -b html source build
+#   open build/index.html
+# =============================================================================
+
+# Sphinx: The documentation/static site generator
+# Converts your .rst files into HTML
+sphinx>=7.0
+
+# Furo: A clean, modern Sphinx theme
+furo
