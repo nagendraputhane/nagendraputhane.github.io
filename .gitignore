@@ -12,6 +12,11 @@
 # so we don't need to commit them.
 build/
 
+# Other folder names Sphinx commonly uses for build output and its cache
+# (e.g. if you run "make html" or build into a different folder).
+_build/
+.doctrees/
+
 # -----------------------------------------------------------------------------
 # Local Documentation
 # -----------------------------------------------------------------------------
@@ -28,6 +33,11 @@ CURSOR.md
 .venv/
 venv/
 env/
+
+# Environment-variable files (these often hold secrets or tokens) - never commit
+.env
+.env.*
+
 __pycache__/
 *.pyc
 *.pyo

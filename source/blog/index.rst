@@ -14,3 +14,4 @@ Welcome to my blog! Here you'll find posts on various topics.
    :maxdepth: 1
 
    intro-to-ai/index
+   nvmeof/index
